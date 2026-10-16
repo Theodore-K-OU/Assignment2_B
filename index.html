@@ -2,8 +2,8 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="with=device-with, inial-scale=1.0"
-        <title>sample</title>
+        <meta name="viewport" content="with=device-with, inial-scale=1.0" />
+        <title>GreenLogic</title>
         <!-- Link to CSS, and .js-->
         <link rel="stylesheet" href="./style.css">
         <script src="app.js" defer></script>
@@ -22,16 +22,108 @@
             </div>
          </header>
          <!--Main section-->
-         <main class="">
+         <main class="page-container">
             <!--aside panel-->
+            <aside class="panel form-panel">
+                <h2 class="panel form-panel">Log Conditions</h2>
 
                 <!--hidden elements-->
-
+                <div
+                id="form-error-banner"
+                class="alert alert-danger hidden"
+                role="alert"
+                ></div>
                 <!--form-->
+                <!--
+                    Green House Bay #
+                    ---
+                    pH Input: unit: unitless 
+                    EC Ectrical Conductivity (EC): unit: mS/cm 
+                    ---
+                    Air Temperature (Temp): unit: degree Celsius or degree Fahrenheit 
+                    Relative Humidity (RH): unit: percentage
+                    ---
+                -->
+                <form action="#"  id="greenhouse-form" novalidate>
+                    <div class="form-group">
+                        <label for="bay-number" class="form-label"
+                        >Greenhouse Bay Number<span class="required">*</span></label>
+                        <input
+                        type="number"
+                        name="bay-number"
+                        id="bay-number"
+                        class="form-control"
+                        placeholder="e.g. 1"
+                        min="1"
+                        max="50"
+                        required
+                        />
+                    </div>
+                    <div class="form-group">
+                        <label for="pH" class="form-label"
+                        >pH <span class="required">*</span></label>
+                        <input
+                        type="number"
+                        name="pH"
+                        id="pH"
+                        class="form-control"
+                        placeholder="e.g. 1"
+                        min="0"
+                        max="14"
+                        required
+                        />
+                        <label for="EC" class="form-label"
+                        >Ectrical Conductivity (EC) (mS/cm)<span class="required">*</span></label>
+                        <input
+                        type="number"
+                        name="EC"
+                        id="EC"
+                        class="form-control"
+                        placeholder="e.g. 1"
+                        min="0"
+                        max="50" 
+                        required
+                        />
+                        <!-- 50 n=mS/cm is equlivent to sea water-->
+                    </div>
+                    <div class="form-group">
+                        <label for="temp" class="form-label"
+                        >Air Temperature (°F) <span class="required">*</span></label>
+                        <input
+                        type="number"
+                        name="temp"
+                        id="temp"
+                        class="form-control"
+                        placeholder="e.g. 70"
+                        min="0"
+                        max="100"
+                        required
+                        />
+                        <label for="RH" class="form-label"
+                        >Relative Humidity (%)<span class="required">*</span></label>
+                        <input
+                        type="number"
+                        name="RH"
+                        id="RH"
+                        class="form-control"
+                        placeholder="e.g. 1"
+                        min="0"
+                        max="100" 
+                        required
+                        />
+                    </div>
+                    <button
+                    type="submit"
+                    id="btn-submit"
+                    class="btn btn-primary btn-block"
+                    >Log Data</button>
+                </form>
 
+            </aside>
             <!--Right container-->
-
+            <section>
                 <!--Two states-->
+            </section>
          </main>
 
     </body>
