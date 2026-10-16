@@ -25,7 +25,7 @@
          <main class="page-container">
             <!--aside panel-->
             <aside class="panel form-panel">
-                <h2 class="panel form-panel">Log Conditions</h2>
+                <h2 class="panel-title">Log Conditions</h2>
 
                 <!--hidden elements-->
                 <div
@@ -59,58 +59,62 @@
                         required
                         />
                     </div>
-                    <div class="form-group">
-                        <label for="pH" class="form-label"
-                        >pH <span class="required">*</span></label>
-                        <input
-                        type="number"
-                        name="pH"
-                        id="pH"
-                        class="form-control"
-                        placeholder="e.g. 1"
-                        min="0"
-                        max="14"
-                        required
-                        />
-                        <label for="EC" class="form-label"
-                        >Ectrical Conductivity (EC) (mS/cm)<span class="required">*</span></label>
-                        <input
-                        type="number"
-                        name="EC"
-                        id="EC"
-                        class="form-control"
-                        placeholder="e.g. 1"
-                        min="0"
-                        max="50" 
-                        required
-                        />
-                        <!-- 50 n=mS/cm is equlivent to sea water-->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="pH" class="form-label"
+                            >pH <span class="required">*</span></label>
+                            <input
+                            type="number"
+                            name="pH"
+                            id="pH"
+                            class="form-control"
+                            placeholder="e.g. 1"
+                            min="0"
+                            max="14"
+                            required
+                            />
+                            <label for="EC" class="form-label"
+                            >Ectrical Conductivity (EC) (mS/cm)<span class="required">*</span></label>
+                            <input
+                            type="number"
+                            name="EC"
+                            id="EC"
+                            class="form-control"
+                            placeholder="e.g. 1"
+                            min="0"
+                            max="50" 
+                            required
+                            />
+                            <!-- 50 n=mS/cm is equlivent to sea water-->
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="temp" class="form-label"
-                        >Air Temperature (°F) <span class="required">*</span></label>
-                        <input
-                        type="number"
-                        name="temp"
-                        id="temp"
-                        class="form-control"
-                        placeholder="e.g. 70"
-                        min="0"
-                        max="100"
-                        required
-                        />
-                        <label for="RH" class="form-label"
-                        >Relative Humidity (%)<span class="required">*</span></label>
-                        <input
-                        type="number"
-                        name="RH"
-                        id="RH"
-                        class="form-control"
-                        placeholder="e.g. 1"
-                        min="0"
-                        max="100" 
-                        required
-                        />
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="temp" class="form-label"
+                            >Air Temperature (°F) <span class="required">*</span></label>
+                            <input
+                            type="number"
+                            name="temp"
+                            id="temp"
+                            class="form-control"
+                            placeholder="e.g. 70"
+                            min="0"
+                            max="100"
+                            required
+                            />
+                            <label for="RH" class="form-label"
+                            >Relative Humidity (%)<span class="required">*</span></label>
+                            <input
+                            type="number"
+                            name="RH"
+                            id="RH"
+                            class="form-control"
+                            placeholder="e.g. 1"
+                            min="0"
+                            max="100" 
+                            required
+                            />
+                        </div>
                     </div>
                     <button
                     type="submit"
@@ -123,7 +127,7 @@
             <!--Right container-->
             <section class="panel record-panel">
                 <div class="record-header">
-                    <h2 class="panel-title">log</h2>
+                    <h2 class="panel-title">Current Records</h2>
                     <button id="btn-clear-all" class="btn btn-outline-danger btn-sm">
                         Purge Records
                     </button>
