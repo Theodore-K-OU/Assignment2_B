@@ -116,3 +116,27 @@ body {
     box-shadow: 0 0 0 3px rgba(231,111,81,0.25);
 }
 /* Buttons */
+.btn-primary{
+    background-color: var(--primary);
+    color: #fff;
+}
+
+.btn-primary:hover{
+    background-color: var(--primary-hover);
+}
+.btn-block{
+    width: 100%;
+}
+.btn-sm{
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+}
+.btn-outline-danger{
+    background-color: transparent;
+    border-color: var(--danger);
+    color: var(--primary);
+}
+.btn-outline-danger:hover{
+    background-color: var(--danger);
+    color: #fff;
+}
