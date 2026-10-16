@@ -70,6 +70,24 @@ body {
     font-weight: 700;
 }
 /*grid*/
+.page-container{
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 2rem;
+    flex-grow: 1;
+    width: 100%;
+}
+.form-panel{
+    flex: 1;
+    min-width: 300px;
+}
+.record-panel  {
+    flex: 2;
+    min-width: 320px;
+}
 .panel{
     background-color: var(--bg-panel);
     border: 1px solid var(--border-color);
@@ -102,7 +120,7 @@ body {
     padding: 0.65rem 0.85rem;
     border-radius: var(--radius);
     font-size: 0.85rem;
-    trnsition: 
+    transition: 
         border-color 0.2s,
         box-shadow 0.2s;
 }
