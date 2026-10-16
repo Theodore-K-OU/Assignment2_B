@@ -121,8 +121,20 @@
 
             </aside>
             <!--Right container-->
-            <section>
+            <section class="panel record-panel">
+                <div class="record-header">
+                    <h2 class="panel-title">log</h2>
+                    <button id="btn-clear-all" class="btn btn-outline-danger btn-sm">
+                        Purge Records
+                    </button>
+                </div>
+
                 <!--Two states-->
+                <div id="empty-state" class="empty-state">
+                    <span class="empty-icon"></span>
+                    <p>No current Records</p>
+                </div>
+                <ul id="record-list" class="record-grid" aria-live="polite"></ul>
             </section>
          </main>
 
