@@ -1,0 +1,21 @@
+:root{
+    /*Vriables */
+    /* Earthly tan color palate */
+    --bg-app: #f7f4ef;
+    --bg-panel: #ffffff;
+    --bg-card: #f0e8dc;
+    
+    --text-main: #f5efe6;
+    --text-muted: #b3a598;
+    --border-color: #453830;
+
+    --primary: #d4a373;
+    --primary-hover: #e0b386;
+    --danger: #E76F51;
+    --warning: #E9C46A;
+    --success: #2A9D8F;
+
+    --font-family:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --radius: 8px;
+}
