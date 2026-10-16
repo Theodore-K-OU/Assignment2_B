@@ -69,3 +69,50 @@ body {
     border-radius: 9999px;
     font-weight: 700;
 }
+/*grid*/
+.panel{
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+}
+.panel-title{
+    font-size: 1.25rem;
+    font-weight: 650;
+    margin-bottom: 1.25rem;
+}
+.form-group{
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+.form-label{
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+.required{
+    color: var(--danger);
+}
+.form-control{
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    padding: 0.65rem 0.85rem;
+    border-radius: var(--radius);
+    font-size: 0.85rem;
+    trnsition: 
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+.form-control:focus{
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(212,163,115,0.25);
+}
+.form-control.input-invalid{
+    border-color: var(--danger);
+    box-shadow: 0 0 0 3px rgba(231,111,81,0.25);
+}
+/* Buttons */
