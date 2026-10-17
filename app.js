@@ -1,4 +1,4 @@
-//greenhouse-card//
+
 /* 
  Critical 
 ○ (pH < 5.0 OR pH > 7.5) AND (Temp < 55F OR Temp > 95F) AND (EC < 0.2 OR 
@@ -151,4 +151,62 @@ btnClearAll.addEventListener("click", (event) => {
 
 
 //DOM RENDERING BODY
+function render(){
+    queueCount.txtContent = records.length;
+
+    if(records.length === 0) {
+        emptyState.classList.remove("hidden");
+        recordList.innerHTML = "";
+        return;
+    }
+
+    emptyState.classList.add("hidden");
+
+    //browser reload
+    const fragment = document.createDocumentFragment();
+
+    records.forEach(function(rec) {
+        const li = document.createElement("li");
+        li.className = "greenhouse-record" + rec.riskState;
+
+
+        //dynamic card
+        li.innerHTML = `<div class="card-top">
+            <div class="bay-number">Bay Number: ${rec.bayNumber}</div>
+            <div class="timestamp">logged at ${rec.timestamp}</div>
+            <span class="risk-state ${rec.riskState}">${rec.riskState}</span>
+        </div>
+        <div class="greenhouse-card">
+            <div class="data-row">pH: ${rec.pH}</div>
+            <div class="data-row">Temp: ${rec.temp} °F</div>
+            <div class="data-row">EC: ${rec.ec} mS/cm</div>
+            <div class="data-row">RH: ${rec.rh} %</div>
+        </div>
+        <button class="btn-delete" data-id="${rec.id}">Delete</button>`;
+        //append to fragment
+        fragment.appendChild(li);
+    });
+
+    recordList.innerHTML = "";
+    recordList.appendChild(fragment);
+
+}
+
+    function displayErrors(message) {
+        errorBanner.textContent = message;
+        errorBanner.classList.remove("hidden");
+    }
+
+    function hideErrors() {
+        errorBanner.textContent = "";
+        errorBanner.classList.add("hidden");
+    }
+
+    function escapeHtml(str) {
+        return str
+.replace(/&/g, "&amp;")
+.replace(/</g, "&lt;")
+.replace(/>/g, "&gt;")
+    }
+);
 

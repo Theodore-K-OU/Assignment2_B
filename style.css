@@ -230,6 +230,42 @@ body {
     border-color: var(--success);
 }
 /*  add card style after .js*/
+.card-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.timestamp{
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.risk-level{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.status.critical .status-indicator{
+    background-color: var(--danger);
+    color: #fff;
+}
+.status.warning .status-indicator{
+    background-color: var(--warning);
+    color: #fff;
+}
+.status.optimal .status-indicator{
+    background-color: var(--success);
+    color: #fff;
+}
+
+.start-item span
+{
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    display: block;
+}
 
 
 
