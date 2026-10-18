@@ -134,7 +134,7 @@ recordList.addEventListener("click", function (event) {
     const target = event.target;
     if (target.classList.contains("btn-delete")) {
         const recordId = target.dataset.id;
-        record.id !== recordId;
+        records = records.filter(record => record.id !== recordId);
         
     saveRecords();
     render();
@@ -153,7 +153,7 @@ btnClearAll.addEventListener("click", (event) => {
 
 //DOM RENDERING BODY
 function render(){
-    logCountBadge.txtContent = records.length;
+    logCountBadge.textContent = records.length;
 
     if(records.length === 0) {
         emptyState.classList.remove("hidden");
@@ -168,8 +168,8 @@ function render(){
 
     records.forEach ((rec) => {
         const li = document.createElement("li");
-        const statusClass = rec.riskState.toLowercase();
-        li.className = 'greenhouse-record" status-${statusClass}';
+        const statusClass = rec.riskState.toLowerCase();
+        li.className = `greenhouse-record" status-${statusClass}`;
 
 
         //dynamic card
