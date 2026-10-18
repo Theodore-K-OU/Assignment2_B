@@ -4,6 +4,7 @@
     --bg-app: #f7f4ef;
     --bg-panel: #ffffff;
     --bg-card: #f0e8dc;
+    --a-card: #a68b61;
     
     --text-main: #2b2521;
     --text-muted: #7a6e65; 
@@ -206,41 +207,42 @@ body {
     margin-bottom: 1rem;
 }
 .record-grid{
+    background-color: var(--bg-app);
     list-style: none;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 1rem;
 }
 .greenhouse-card{
-    background-color: var(--bg-card);
+    background-color: var(--bg-panel);
     border: 1px solid var(--border-color);
     border-radius: var(--radius);
-    padding: 1rem;
+    padding: 1.25rem;
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 1rem;
 }
-.greenhouse-card.status-critical{
-    border-color: var(--danger);
-}
-.greenhouse-card.status-warning{
-    border-color: var(--warning);
-}
-.greenhouse-card.status-optimal{
-    border-color: var(--success);
-}
-/*  add card style after .js*/
 .card-header{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: .05rem;
+    border-bottom: 1px var(--a-card);
 }
 
-.timestamp{
-    font-size: 0.75rem;
-    color: var(--text-muted);
+.greenhouse-card.status-critical{
+    border-color: var(--danger);
+    border-left: 5px solid var(--danger);
 }
-
+.greenhouse-card.status-warning{
+    border-color: var(--warning);
+    border-left: 5px solid var(--warning);
+}
+.greenhouse-card.status-optimal{
+    border-color: var(--success);
+    border-left: 5px solid var(--success);
+}
+/*  add card style after .js*/
 .risk-level{
     display: flex;
     align-items: center;
@@ -267,6 +269,12 @@ body {
     display: block;
 }
 
+.data-grid{
+    display: grid;
+    grid-template-columns: 2, 1fr;
+    gap: 0.75rem;
+    border-radius: var(--radius);
+}
 
 
 .page-footer{

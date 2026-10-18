@@ -169,7 +169,7 @@ function render(){
     records.forEach ((rec) => {
         const li = document.createElement("li");
         const statusClass = rec.riskState.toLowerCase();
-        li.className = `greenhouse-record" status-${statusClass}`;
+        li.className = `greenhouse-record greenhouse-card" status-${statusClass}`;
 
 
         //dynamic card
