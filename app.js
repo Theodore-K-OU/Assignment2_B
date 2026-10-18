@@ -40,12 +40,13 @@ EC > 4.5 ) AND (RH < 30 OR RH > 90 )
 
     function loadRecords() { //loads records from local storage
         try{
-            const sotred = localStorage.getItem(STORAGE_KEY);
+            const stored = localStorage.getItem(STORAGE_KEY);
             return stored ? JSON.parse(stored) : [];
-        } catch{
+        } catch(error){
             console.error;
-            return;
+            return[];
     }
+}
 
     function saveRecords() { //for saving Data to local storage
         try {
@@ -67,7 +68,7 @@ EC > 4.5 ) AND (RH < 30 OR RH > 90 )
     //data validation
     function validateInput(data) {
         const errors = [];
-        if(isNaN(data.bayNumber) || data.bayNumber < 1 || data.bayNumber > 50) {
+        if(isNaN(data.bayNumber) || data.bayNumber < 1 || data.bayNumber > 10) {
             errors.push("Bay Number must be a number between 1 and 10.");
         }
         if(isNaN(data.pH) || data.pH < 0 || data.pH > 14) {
@@ -94,10 +95,10 @@ EC > 4.5 ) AND (RH < 30 OR RH > 90 )
         const formData = {
             id:crypto.randomUUID(),
             bayNumber: parseInt(inputBayNumber.value, 10),
-            pH: parseFloat(inputPH.value, 10),
-            temp: parseFloat(inputTemp.value, 10),
-            ec: parseFloat(inputEc.value, 10),
-            rh: parseFloat(inputRh.value, 10),
+            pH: parseFloat(inputPH.value),
+            temp: parseFloat(inputTemp.value),
+            ec: parseFloat(inputEc.value),
+            rh: parseFloat(inputRh.value),
             timestamp: new Date().toLocaleDateString([], {
             hour: "2-digit",
             minute: "2-digit",
@@ -133,8 +134,8 @@ recordList.addEventListener("click", function (event) {
     const target = event.target;
     if (target.classList.contains("btn-delete")) {
         const recordId = target.dataset.id;
-        return record.id !== recordId;
-        });
+        record.id !== recordId;
+        
     saveRecords();
     render();
     }
@@ -152,7 +153,7 @@ btnClearAll.addEventListener("click", (event) => {
 
 //DOM RENDERING BODY
 function render(){
-    queueCount.txtContent = records.length;
+    logCountBadge.txtContent = records.length;
 
     if(records.length === 0) {
         emptyState.classList.remove("hidden");
@@ -165,32 +166,36 @@ function render(){
     //browser reload
     const fragment = document.createDocumentFragment();
 
-    records.forEach (rec => {
+    records.forEach ((rec) => {
         const li = document.createElement("li");
-        li.className = "greenhouse-record" + rec.riskState;
+        const statusClass = rec.riskState.toLowercase();
+        li.className = 'greenhouse-record" status-${statusClass}';
 
 
         //dynamic card
-        li.innerHTML = `<div class="card-top">
-            <div class="bay-number">Bay Number: ${rec.bayNumber}</div>
-            <div class="timestamp">logged at ${rec.timestamp}</div>
-            <span class="risk-state ${rec.riskState}">${rec.riskState}</span>
+        li.innerHTML = `
+        <div class="card-header">
+          <div class="bay-number"><strong>Bay #${rec.bayNumber}</strong></div>
+          <span class="timestamp">${rec.timestamp}</span>
         </div>
-        <div class="greenhouse-card">
-            <div class="data-row">pH: ${rec.pH}</div>
-            <div class="data-row">Temp: ${rec.temp} °F</div>
-            <div class="data-row">EC: ${rec.ec} mS/cm</div>
-            <div class="data-row">RH: ${rec.rh} %</div>
+        <div class="risk-level status ${statusClass}">
+          <span class="status-indicator badge-count">${escapeHtml(rec.riskState)}</span>
         </div>
-        <button class="btn-delete" data-id="${rec.id}">Delete</button>';
-        //append to fragment
+        <div class="data-grid">
+          <div class="data-row"><strong>pH:</strong> ${rec.pH}</div>
+          <div class="data-row"><strong>Temp:</strong> ${rec.temp} °F</div>
+          <div class="data-row"><strong>EC:</strong> ${rec.ec} mS/cm</div>
+          <div class="data-row"><strong>RH:</strong> ${rec.rh} %</div>
+        </div>
+        <button class="btn btn-outline-danger btn-sm btn-delete" data-id="${rec.id}">Delete</button>
+      `;
+        
         fragment.appendChild(li);
     });
 
     recordList.innerHTML = "";
     recordList.appendChild(fragment);
-
-}
+    }
 
     function displayErrors(message) {
         errorBanner.textContent = message;
@@ -203,7 +208,7 @@ function render(){
     }
 
     function escapeHtml(str) {
-        return str
+        return String(str)
 .replace(/&/g, "&amp;")
 .replace(/</g, "&lt;")
 .replace(/>/g, "&gt;")
