@@ -11,7 +11,7 @@ EC > 4.5 ) AND (RH < 30 OR RH > 90 )
 
 */
 (function() {
- "use strict()";
+ "use strict";
  
 
 //storage Key
@@ -29,8 +29,8 @@ EC > 4.5 ) AND (RH < 30 OR RH > 90 )
     const inputBayNumber = document.getElementById('bay-number');
     const inputPH = document.getElementById('pH');
     const inputTemp = document.getElementById('temp');
-    const inputEc = document.getElementById('ec');
-    const inputRh = document.getElementById('rh');
+    const inputEc = document.getElementById('EC');
+    const inputRh = document.getElementById('RH');
 
     //load records
     let records = loadRecords();
@@ -39,13 +39,12 @@ EC > 4.5 ) AND (RH < 30 OR RH > 90 )
     render();
 
     function loadRecords() { //loads records from local storage
-        const stored = localStorage.getItem(STORAGE_KEY);
-        if (recordsJson) {
+        try{
+            const sotred = localStorage.getItem(STORAGE_KEY);
             return stored ? JSON.parse(stored) : [];
-        }catch (error) {
-            console.error("Error loading records from localStorage:", error);
-            return [];
-        }
+        } catch{
+            console.error;
+            return;
     }
 
     function saveRecords() { //for saving Data to local storage
@@ -68,7 +67,7 @@ EC > 4.5 ) AND (RH < 30 OR RH > 90 )
     //data validation
     function validateInput(data) {
         const errors = [];
-        if(isNaN(data.bayNumber) || data.bayNumber < 1 || data.bayNumber > 10) {
+        if(isNaN(data.bayNumber) || data.bayNumber < 1 || data.bayNumber > 50) {
             errors.push("Bay Number must be a number between 1 and 10.");
         }
         if(isNaN(data.pH) || data.pH < 0 || data.pH > 14) {
@@ -93,6 +92,7 @@ EC > 4.5 ) AND (RH < 30 OR RH > 90 )
     greenhouseForm.addEventListener("submit", (event) => {
         event.preventDefault();
         const formData = {
+            id:crypto.randomUUID(),
             bayNumber: parseInt(inputBayNumber.value, 10),
             pH: parseFloat(inputPH.value, 10),
             temp: parseFloat(inputTemp.value, 10),
@@ -101,9 +101,9 @@ EC > 4.5 ) AND (RH < 30 OR RH > 90 )
             timestamp: new Date().toLocaleDateString([], {
             hour: "2-digit",
             minute: "2-digit",
-            }),
-        };
-    }
+            
+        })
+    };
 
     const validationErrors = validateInput(formData);
 
@@ -129,12 +129,12 @@ EC > 4.5 ) AND (RH < 30 OR RH > 90 )
     inputBayNumber.focus();
 });
 
-recordList.addEventListener("click", function(event) {
+recordList.addEventListener("click", function (event) {
     const target = event.target;
     if (target.classList.contains("btn-delete")) {
         const recordId = target.dataset.id;
         return record.id !== recordId;
-    });
+        });
     saveRecords();
     render();
     }
@@ -165,7 +165,7 @@ function render(){
     //browser reload
     const fragment = document.createDocumentFragment();
 
-    records.forEach(function(rec) {
+    records.forEach (rec => {
         const li = document.createElement("li");
         li.className = "greenhouse-record" + rec.riskState;
 
@@ -182,7 +182,7 @@ function render(){
             <div class="data-row">EC: ${rec.ec} mS/cm</div>
             <div class="data-row">RH: ${rec.rh} %</div>
         </div>
-        <button class="btn-delete" data-id="${rec.id}">Delete</button>`;
+        <button class="btn-delete" data-id="${rec.id}">Delete</button>';
         //append to fragment
         fragment.appendChild(li);
     });
@@ -208,5 +208,4 @@ function render(){
 .replace(/</g, "&lt;")
 .replace(/>/g, "&gt;")
     }
-);
-
+    })();
